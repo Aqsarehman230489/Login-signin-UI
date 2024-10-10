@@ -4,40 +4,105 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>Login</title>
+    <title>Login & Sign Up</title>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <link rel='stylesheet' href='style.css'>
 </head>
 
 <body>
-    <section class="login-section">
-        <div class="form-box login-form">
+    <section class="form-section">
+        <!-- login box -->
+        <div id="login-box" class="form-box login-form">
             <div class="form-value">
-                <form>
+                <form id="login-form" onsubmit="return handleLogin(event)">
                     <h2>Login</h2>
                     <div class="inputbox">
                         <ion-icon name="mail-outline"></ion-icon>
-                        <input type="email" required>
-                        <label>Email</label>
+                        <input id="login-email" type="email" required>
+                        <label for="login-email">Email</label>
                     </div>
                     <div class="inputbox">
                         <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" required>
-                        <label>Password</label>
+                        <input id="login-password" type="password" required>
+                        <label for="login-password">Password</label>
                     </div>
                     <div class="forget">
-                        <label><input type="checkbox">Remember Me</label>
+                        <label><input type="checkbox"> Remember Me</label>
                         <a href="#">Forgot Password</a>
                     </div>
-                    <button>Log In</button>
+                    <button type="submit">Log In</button>
                     <div class="register">
-                        <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+                        <p>Don't have an account? <a href="#" onclick="showSignUp()">Sign Up</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- sign up box-->
+        <div id="signup-box" class="form-box signup-form hidden">
+            <div class="form-value">
+                <form id="signup-form" onsubmit="return handleSignUp(event)">
+                    <h2>Sign Up</h2>
+                    <div class="inputbox">
+                        <ion-icon name="person-outline"></ion-icon>
+                        <input id="signup-name" type="text" required>
+                        <label for="signup-name">Username</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input id="signup-email" type="email" required>
+                        <label for="signup-email">Email</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input id="signup-password" type="password" required>
+                        <label for="signup-password">Password</label>
+                    </div>
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input id="signup-confirm-password" type="password" required>
+                        <label for="signup-confirm-password">Confirm Password</label>
+                    </div>
+                    <button type="submit">Sign Up</button>
+                    <div class="register">
+                        <p>Already have an account? <a href="#" onclick="showLogin()">Log In</a></p>
                     </div>
                 </form>
             </div>
         </div>
     </section>
+
+    <script>
+       
+        function showSignUp() {
+            document.getElementById('login-box').classList.add('hidden');
+            document.getElementById('signup-box').classList.remove('hidden');
+        }
+
+        function showLogin() {
+            document.getElementById('signup-box').classList.add('hidden');
+            document.getElementById('login-box').classList.remove('hidden');
+        }
+
+       
+        function handleLogin(event) {
+            event.preventDefault(); 
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            alert("\nEmail: " + email + "\nPassword: " + password );
+        }
+
+        
+        function handleSignUp(event) {
+            event.preventDefault(); 
+            const Name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('signup-confirm-password').value;
+            alert("Name: " + name + "\nPassword: " + password + "\nEmail: " + email);
+        }
+    </script>
 </body>
 
 </html>
